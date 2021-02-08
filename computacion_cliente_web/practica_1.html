@@ -1,0 +1,201 @@
+<HTML>
+<!-- Definicion del tipo del documento -->
+<!DOCTYPE html>
+<!-- Definicion del lenguaje para evitar problemas con acentos o caracteres especiales -->
+<html lang="es">
+ <link rel="shortcut icon" href="img/logo.ico">
+<!-- urls de librerias de jquery que se encuentran en la carpeta de js-->
+    <script src="/js/jquery-migrate-1.4.1.min.js" type="text/javascript"></script>
+
+<!-- urls para componente de bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- localizacion de estilos -->
+ <link rel="stylesheet" type="text/css" href="estilopagina.css">
+<!-- Encabezado -->
+<HEAD>
+<!-- Definicion del lenguaje para evitar problemas con acentos o caracteres especiales en HTML -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Titulo de pagina -->
+<title> Clarita ps </title>
+<!-- Descripcion de pagina -->
+<meta name="Description" content="Multi Frases">
+<!-- para definicion del tamaño en diferentes dispositivos -->
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+<!-- definicion de funete para las cadenas de textos -->
+<meta name="Robots" content="index, follow">
+<!-- Descripcion para el icono de la pagina -->
+ 
+</HEAD>
+
+<!-- Cuerpo de la pagina -->
+<BODY>
+  <!-- Seccion para inicializar la pagina en caso de seleccionar el boton de subir contenido -->
+<div id="inicio"></div>
+<div id="header">
+<div class="barral"><a href="https://claritaps.com" title="Claritaps">Practica 1</a></div>
+
+<div id="page">
+<!-- Subtitulos y descripcion breve para mostrar en la pagina web  -->
+<br><br>
+<h1>  Multifrases </h1>
+
+<div class="entry">
+<div class="intro">
+Frases y chistes para cualquier ocasión. 
+</div>
+<br>
+La gran mayoría tratan sobre las relaciones personales como el amor, la amistad y otros bellos sentimientos del ser humano.<br>
+
+<br>
+<!-- Seccion para las frases -->
+<div id="frases"></div>
+<h2>Frases Famosas</h2>
+<br>
+<!-- Boton para ejecutar la funcion de JavaScript abrirAlertasFrases, en donde se debe seleccionar el boton para mostrar el texto relacionado -->
+<button class="btn btn-info" onclick="abrirAlertasFrase()">Clic para ver las frases ocultas.</button> 
+<!-- Seccion en donde se muestra el resultado de la funcion -->
+<div class="marcos" id="m1">
+</div>
+<br>
+</div></div>
+<br>
+<!-- Seccion para chistes -->
+<div id="frases"></div>
+<h2>Chistes</h2>
+<br>
+<!-- Boton para ejecutar la funcion de JavaScript abrirAlertasChiste, en donde se debe seleccionar el boton para mostrar el texto relacionado -->
+<button class="btn btn-info" onclick="abrirAlertasChiste()">Clic para ver los chistes ocultos.</button> 
+<!-- Seccion en donde se muestra el resultado de la ejecucion de la funcion, para mostrar el elemento con el texto del chiste -->
+<div class="marcos" id="m2">
+</div>
+		
+<!-- Pie de pagina para mostrar dos secciones de la pagina principal en donde estara disponible en la web -->
+<div style="clear:both;">&nbsp;</div>  
+</div>
+<div id="post3">
+<a href="https://claritaps.com/">Inicio</a> | <a href="https://claritaps.com/sobre-mi.php">Sobre mí</a></div>
+<div id="footer">
+		<p> Copyright © 2021 </p>
+    <!-- Boton para subir el desplazador de la pagina web-->
+		<a href="#inicio"><img id="up" src="https://claritaps.com/img/main/up.png" width="70" height="57" alt="Subir" title="Subir"></a>
+</div>
+
+<!-- Secciones de Script con lenguaje en JavaScript -->
+	<script language="JavaScript">
+    //En la funcion de abrir Alertas Frase: en donde se muestra un elemento de forma dinamica al momento de ejecutar la funcion
+     function abrirAlertasFrase(){
+      //En rF se almacena el resultado obtenido de la funcion getFrase
+     	var rF=getFrase();
+      //En newE se almacena el nuevo elemento creado que es una nueva referencia
+     	var newE=document.createElement("a");
+      //En newC se almacena el texto de la variable rF
+     	  var newC = document.createTextNode("• "+rF);
+        //se agrega el texto al elemento de referencia
+           newE.appendChild(newC);
+
+//Se obtiene el elemento con id m1, en donde se anexa el elemento creado dinamico, ademas de un salto de linea
+      document.getElementById("m1").appendChild(newE).appendChild(document.createElement("br"));
+
+       }
+
+  //abrirAlertasChiste: en donde se crea un elemento para la seccion de los chistes
+     function abrirAlertasChiste(){
+      //En rF se almacena el resultado obtenido de la funcion getChiste
+     	var rF=getChiste();
+      //En newE se almacena el nuevo elemento creado que es una nueva referencia
+     	var newE=document.createElement("a");
+      //En newC se almacena el texto de la variable rF
+     	  var newC = document.createTextNode("♦ "+rF);
+        //se agrega el texto al elemento de referencia
+           newE.appendChild(newC);
+
+//Se obtiene el elemento con id m1, en donde se anexa el elemento creado dinamico, ademas de un salto de linea
+      document.getElementById("m2").appendChild(newE).appendChild(document.createElement("br"));
+
+
+             }
+
+//funcion de getChiste, en donde despues de obtener un numero aleatorio se relaciona con la relacion de resultados y se retorna el texto
+             function getChiste(){
+              //en la variable rA se almacena el numero random
+             var rA= Math.floor(Math.random() * (25 - 2)) + 2;
+             //a partir del resultado del numero aleatorio, se relaciona con el caso para retorna el texto
+           	switch(rA){
+           		case 2: return "¿Qué le dijo un hule a otro hule?? -R: Quiubule"; break;
+           		case 3: return "¿Para qué va una caja al gimnasio?  \nPara hacerse caja fuerte."; break;
+           		case 4: return "¿Qué hace una persona con un sobre de ketchup en la oreja?        \n -Escuchando salsa."; break;
+       		case 5: return "¿cual es el pais que rie y explota?      \nX: cual?                         \nJa-pon"; break;
+           		case 6: return "- Soy un tipo saludable   \n- Ah. ¿Comes sano y todo eso?   \n- No, la gente me saluda..."; break;
+           		case 7: return "-¿Qué le dice un jaguar a otro jaguar?   \n-“Jaguar you”."; break;
+           		case 8: return "-¿Qué le dice un semáforo a otro?        \n-¡No me mires que me estoy cambiando!"; break;
+           		case 9: return ""; break;
+           		case 10: return "¿Qué le dice un espagueti al otro? mi cuerpo pide salsa."; break;
+           		case 11: return "-¿Por qué una señora lleva pegamento al restaurante?        \n-En caso de romper la dieta"; break;
+           		case 12: return "– Mamá, mamá, ¿puedo usar tu coche?        \n– ¡No sin mi supervisión, Jaimito!        \n– ¡¡Uy, perdón, no sabía que había que tener superpoderes…!!"; break;
+           		case 13: return "– Jaimito, tienes que decir dos palabras que tengan tilde.  \n– ¡Pues muy sencillo señorita, Matilde y Clotilde!"; break;
+           		case 14: return "¿Qué diferencia hay entre una pulga y un elefante?         \n- Que el elefante puede tener pulgas y la pulga no puede tener elefantes."; break;
+           		case 15: return "Un ratón le dice a una rata:         \n- ¿Qué haces ahí sentada?         \n- Estoy esperando un ratito"; break;
+           		case 16: return "- ¿Qué le dice un pato a otro pato?        \n¡Estamos empatados!"; break;
+           		case 17: return "Suena el teléfono... ¿esta chucho? (shucio)... no, está limpio..."; break;
+           		case 18: return "QUE LE DIJO MARCO ANTONIO SOLISA UN TAXISTAR: ADONDE BAMOS A PARAR"; break;
+           		case 19: return "¿Que se dice una Cereza cuándo e mira al espejo?   -¿Seré ezha?"; break;
+           		case 20: return "¿Qué le dijo un ganzo a una ganza?           \n- Ven ganza."; break;
+           		case 21: return "¿Cuál es el animal que anda con una pata?          \nPues el pato"; break;
+           		case 22: return "Un pez le dice al otro:           \n- ¿Qué hace tu papá?           \nY el otro le contesta:           \n- NADA. ¿Y el tuyo?           \n- NADA también"; break;
+           		case 23: return "Hay una vaca, una gallina y un caballo, y todos tienen 14 meses.           \n-¿Quién tiene más meses?           \n-La gallina porque tiene 14 meses, y pico"; break;
+           		case 24: return "Es una pareja, y le dice el hombre a la mujer: \n- Cariño, dime una palabra con amor.   \n- AMORTIGUADOR."; break;
+           		case 25: return "– Jaimito, ¿cuál es la montaña más limpia?        \n– El volcán.        \n– ¿El volcán?        \n– Sí, porque primero echa cenizas y después, lava"; break;
+           		case 26: return "¿Sabes como estornudan los tomates?   Ketchup,  ketchup "; break;
+           		default: return "-¿Qué le dice un chinche a una chinche?        \n-Te amo chincheramente";
+           	}
+             }
+
+//funcion de getFrase, en donde despues de obtener un numero aleatorio se relaciona con la relacion de resultados y se retorna el texto
+           function getFrase(){
+              //en la variable rA se almacena el numero random
+           	var rA= Math.floor(Math.random() * (35 - 2)) + 2;
+             //a partir del resultado del numero aleatorio, se relaciona con el caso para retorna el texto
+           	switch(rA){
+           		case 2: return "La sabiduría nos llega cuando ya no nos sirve de nada. \n-Gabriel García Márquez."; break;
+           		case 3: return "No hay que ir para atrás ni para darse impulso. \n-Lao Tsé."; break;
+           		case 4: return "Ser o no ser, esa es la cuestión. \n-William Shakespeare."; break;
+           		case 5: return "No hay caminos para la paz; la paz es el camino. \n-Mahatma Gandhi."; break;
+           		case 6: return "Haz el amor y no la guerra. \n-John Lennon."; break;
+           		case 7: return "Es mejor ser rey de tu silencio que esclavo de tus palabras. \n-William Shakespeare."; break;
+           		case 8: return "Lo peor que hacen los malos es obligarnos a dudar de los buenos. \n-Jacinto Benavente."; break;
+           		case 9: return "Las guerras seguirán mientras el color de la piel siga siendo más importante que el de los ojos. \n-Bob Marley."; break;
+           		case 10: return "Aprende a vivir y sabrás morir bien. \n-Confuncio."; break;
+           		case 11: return "Cada día sabemos más y entendemos menos. \n-Albert Einstein."; break;
+           		case 12: return "El mundo no está en peligro por las malas personas sino por aquellas que permiten la maldad . \n-Albert Einstein."; break;
+           		case 13: return "La medida del amor es amar sin medida. \n-San Agustín."; break;
+           		case 14: return "No hay nada bueno o malo, el pensamiento lo hace así. \n-William Shakespeare."; break;
+           		case 15: return "No hay nada que un hombre no sea capaz de hacer cuando una mujer le mira. \n-Casanova."; break;
+           		case 16: return "El dinero no puede comprar la vida. \n-Bob Marley."; break;
+           		case 17: return "Si es bueno vivir, todavía es mejor soñar, y lo mejor de todo, despertar. \n-Antonio Machado."; break;
+           		case 18: return " Si das pescado a un hombre hambriento lo nutres durante una jornada. Si le enseñas a pescar, le nutrirás toda su vida. \n-Lao Tsé."; break;
+           		case 19: return "Vale más actuar exponiéndose a arrepentirse de ello, que arrepentirse de no haber hecho nada. \n-Giovanni Boccaccio."; break;
+           		case 20: return "Ningún hombre es lo bastante bueno para gobernar a otros sin su consentimiento. \n-Abraham Lincoln."; break;
+           		case 21: return "No estoy tan enamorado de mis propias opiniones que ignore lo que los demás puedan pensar acerca de ellas. \n-Copérnico."; break;
+           		case 22: return "La más estricta justicia no creo que sea siempre la mejor política . \n-Aristóteles."; break;
+           		case 23: return "El nacimiento y la muerte no son dos estados distintos, sino dos aspectos del mismo estado. \n-Mahatma Gandhi."; break;
+           		case 24: return "El mundo es bello, pero tiene un defecto llamado hombre. \n-Friedrich Nietzsche."; break;
+           		case 25: return "La pereza viaja tan despacio que la pobreza no tarda en alcanzarla. \n-(Benjamin Franklin."; break;
+           		case 26: return "Pienso, luego existo . \n-René Descartes."; break;
+           		case 27: return "Lo que no te mata, te hace más fuerte. \n-Friedrich Nietzsche."; break;
+           		case 28: return "No abras los labios si no estás seguro de que lo que vas a decir es más hermoso que el silencio. \n-Proverbio árabe."; break;
+           		case 29: return "La esperanza es un estimulante vital muy superior a la suerte. \n-."; break;
+           		case 30: return ". \n-Friedrich Nietzsche."; break;
+           		case 31: return "No basta levantar al débil, hay que sostenerlo después. \n-William Shakespeare."; break;
+           		case 32: return "La vida no es sino una continua sucesión de oportunidades para sobrevivir.. \n-Gabriel García Márquez."; break;
+           		case 33: return "La verdadera sabiduría está en reconocer la propia ignorancia. \n-Sócrates."; break;
+           		case 34: return "Sería muy poco feliz si pudiera decir hasta qué punto lo soy. \n-William Shakespeare."; break;
+           		case 35: return "La memoria del corazón elimina los malos recuerdos y magnifica los buenos, y gracias a ese artificio, logramos sobrellevar el pasado.   \n-Gabriel García Márquez."; break;
+           		default: return "De humanos es errar y de necios permanecer en el error. \n-Marco Tulio Cicerón"; 
+           	}
+           }
+</script> 
+
+
+</BODY>
+</HTML>
