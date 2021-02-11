@@ -2,19 +2,16 @@
 <?php
 
 class Expenses extends SessionController{
-
-
+/* Controlador para los productos registrados en el sistema */
     private $user;
 
     function __construct(){
         parent::__construct();
 
         $this->user = $this->getUserSessionData();
-        error_log("Expenses::constructor() ");
     }
 
      function render(){
-        error_log("Expenses::RENDER() ");
 
         $this->view->render('expenses/index', [
             'user' => $this->user,
@@ -24,14 +21,13 @@ class Expenses extends SessionController{
     }
 
     function newExpense(){
-        error_log('Expenses::newExpense()');
         if(!$this->existPOST(['title', 'amount', 'category', 'date'])){
-            $this->redirect('dashboard', ['error' => Errors::ERROR_EXPENSES_NEWEXPENSE_EMPTY]);
+            $this->redirect('dashboard', ['error' => Errors::'Se detectaron multiples nombre del producto. Favor de validar']);
             return;
         }
 
         if($this->user == NULL){
-            $this->redirect('dashboard', ['error' => Errors::ERROR_EXPENSES_NEWEXPENSE]);
+            $this->redirect('dashboard', ['error' => Errors::'Se detectaron multiples nombre del producto. Favor de validar']);
             return;
         }
 
@@ -44,10 +40,9 @@ class Expenses extends SessionController{
         $expense->setUserId($this->user->getId());
 
         $expense->save();
-        $this->redirect('dashboard', ['success' => Success::SUCCESS_EXPENSES_NEWEXPENSE]);
+        $this->redirect('dashboard', ['success' => Success::'Se agrego con exito un nuevo producto']);
     }
 
-    // new expense UI
     function create(){
         $categories = new CategoriesModel();
         $this->view->render('expenses/create', [
@@ -68,7 +63,7 @@ class Expenses extends SessionController{
         return $res;
     }
 
-    // crea una lista con los meses donde hay expenses
+    /* crea una lista con los meses donde hat productos registrados*/
     private function getDateList(){
         $months = [];
         $res = [];
@@ -79,7 +74,6 @@ class Expenses extends SessionController{
             array_push($months, substr($expense->getDate(),0, 7 ));
         }
         $months = array_values(array_unique($months));
-        //mostrar los últimos 3 meses
         if(count($months) >3){
             array_push($res, array_pop($months));
             array_push($res, array_pop($months));
@@ -88,7 +82,7 @@ class Expenses extends SessionController{
         return $res;
     }
 
-    // crea una lista con las categorias donde hay expenses
+    /* crea una lista con las categorias donde existen productos registrados*/
     private function getCategoryList(){
         $res = [];
         $joinExpensesCategoriesModel = new JoinExpensesCategoriesModel();
@@ -102,7 +96,7 @@ class Expenses extends SessionController{
         return $res;
     }
 
-    // crea una lista con los colores dependiendo de las categorias
+    /* crea una lista con los colores dependiendo de las categorias*/
     private function getCategoryColorList(){
         $res = [];
         $joinExpensesCategoriesModel = new JoinExpensesCategoriesModel();
@@ -119,7 +113,7 @@ class Expenses extends SessionController{
 
     
 
-    // devuelve el JSON para las llamadas AJAX
+    /* devuelve el JSON para las llamadas AJAX*/
     function getHistoryJSON(){
         header('Content-Type: application/json');
         $res = [];
@@ -144,9 +138,6 @@ class Expenses extends SessionController{
 
         array_unshift($categoryNames, 'mes');
         array_unshift($categoryColors, 'categorias');
-        /* array_unshift($categoryNames, 'categorias');
-        array_unshift($categoryColors, NULL); */
-
         $months = $this->getDateList();
 
         for($i = 0; $i < count($months); $i++){
@@ -174,17 +165,15 @@ class Expenses extends SessionController{
     }
 
     function delete($params){
-        error_log("Expenses::delete()");
         
-        if($params === NULL) $this->redirect('expenses', ['error' => Errors::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+        if($params === NULL) $this->redirect('expenses', ['error' => Errors::'Fallo en la administracion']);
         $id = $params[0];
-        error_log("Expenses::delete() id = " . $id);
         $res = $this->model->delete($id);
 
         if($res){
             $this->redirect('expenses', ['success' => Success::SUCCESS_EXPENSES_DELETE]);
         }else{
-            $this->redirect('expenses', ['error' => Errors::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+            $this->redirect('expenses', ['error' => Errors::'Fallo en la administracion']);
         }
     }
 

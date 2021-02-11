@@ -1,4 +1,4 @@
-
+<!-- Plantilla de html para la pagina de Usuarios en el sitio-->
 <?php
     $user = $this->d['user'];
 ?>

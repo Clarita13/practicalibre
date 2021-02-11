@@ -31,7 +31,6 @@ class View{
             $errors = new Errors();
 
             if($errors->existsKey($hash)){
-                error_log('View::handleError() existsKey =>' . $errors->get($hash));
                 $this->d['error'] = $errors->get($hash);
             }else{
                 $this->d['error'] = NULL;
@@ -46,7 +45,6 @@ class View{
             $success = new Success();
 
             if($success->existsKey($hash)){
-                error_log('View::handleError() existsKey =>' . $success->existsKey($hash));
                 $this->d['success'] = $success->get($hash);
             }else{
                 $this->d['success'] = NULL;

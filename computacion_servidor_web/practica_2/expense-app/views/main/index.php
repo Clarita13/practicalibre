@@ -1,3 +1,4 @@
+<!-- Plantilla para el inicio del portal web-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

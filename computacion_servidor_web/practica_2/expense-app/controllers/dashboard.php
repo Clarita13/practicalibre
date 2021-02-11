@@ -2,18 +2,17 @@
 <?php
 
 class Dashboard extends SessionController{
-
+/* Controlador para las sesiones del administrador */
     private $user;
 
     function __construct(){
         parent::__construct();
 
         $this->user = $this->getUserSessionData();
-        error_log("Dashboard::constructor() ");
     }
 
      function render(){
-        error_log("Dashboard::RENDER() ");
+         /* Extraccion de los modelos de los productos almacenados en BD */
         $expensesModel          = new ExpensesModel();
         $expenses               = $this->getExpenses(5);
         $totalThisMonth         = $expensesModel->getTotalAmountThisMonth($this->user->getId());
@@ -29,14 +28,14 @@ class Dashboard extends SessionController{
         ]);
     }
     
-    //obtiene la lista de expenses y $n tiene el número de expenses por transacción
+    /*Donde se obtiene la lista de productos y  el número de transacciones*/
     private function getExpenses($n = 0){
         if($n < 0) return NULL;
-        error_log("Dashboard::getExpenses() id = " . $this->user->getId());
         $expenses = new ExpensesModel();
         return $expenses->getByUserIdAndLimit($this->user->getId(), $n);   
     }
 
+    /* Obtencion de las categorias */
     function getCategories(){
         $res = [];
         $categoriesModel = new CategoriesModel();
@@ -46,9 +45,9 @@ class Dashboard extends SessionController{
 
         foreach ($categories as $category) {
             $categoryArray = [];
-            //obtenemos la suma de amount de expenses por categoria
+            /*se obtiene el monto de los productos por categoria*/
             $total = $expensesModel->getTotalByCategoryThisMonth($category->getId(), $this->user->getId());
-            // obtenemos el número de expenses por categoria por mes
+            /* se obtiene el número de productos por categoria por mes*/
             $numberOfExpenses = $expensesModel->getNumberOfExpensesByCategoryThisMonth($category->getId(), $this->user->getId());
             
             if($numberOfExpenses > 0){

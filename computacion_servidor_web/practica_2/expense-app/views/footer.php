@@ -1,3 +1,4 @@
+<!-- Plantilla para pie de pagina -->
 <style>
     .about2{font-size:0.7em;}
 </style>

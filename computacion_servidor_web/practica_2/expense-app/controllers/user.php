@@ -9,7 +9,6 @@ class User extends SessionController{
         parent::__construct();
 
         $this->user = $this->getUserSessionData();
-        error_log("user " . $this->user->getName());
     }
 
     function render(){
@@ -20,20 +19,20 @@ class User extends SessionController{
 
     function updateBudget(){
         if(!$this->existPOST('budget')){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
+            $this->redirect('user', ['error' => Errors::'Error al registrar datos del usuario']);
             return;
         }
 
         $budget = $this->getPost('budget');
 
         if(empty($budget) || $budget === 0 || $budget < 0){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET_EMPTY]);
+            $this->redirect('user', ['error' => Errors::'Error al registrar datos del usuario'_EMPTY]);
             return;
         }
     
         $this->user->setBudget($budget);
         if($this->user->update()){
-            $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEBUDGET]);
+            $this->redirect('user', ['success' => Success::'Se actualizo el dato del usuario']);
         }else{
             //error
         }
@@ -41,20 +40,20 @@ class User extends SessionController{
 
     function updateName(){
         if(!$this->existPOST('name')){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
+            $this->redirect('user', ['error' => Errors::'Error al registrar datos del usuario']);
             return;
         }
 
         $name = $this->getPost('name');
 
         if(empty($name)){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
+            $this->redirect('user', ['error' => Errors::'Error al registrar datos del usuario']);
             return;
         }
         
         $this->user->setName($name);
         if($this->user->update()){
-            $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEBUDGET]);
+            $this->redirect('user', ['success' => Success::'Se actualizo el dato del usuario']);
         }else{
             //error
         }
@@ -62,7 +61,7 @@ class User extends SessionController{
 
     function updatePassword(){
         if(!$this->existPOST(['current_password', 'new_password'])){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la contraseña']);
             return;
         }
 
@@ -70,12 +69,12 @@ class User extends SessionController{
         $new     = $this->getPost('new_password');
 
         if(empty($current) || empty($new)){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_EMPTY]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la contraseña']);
             return;
         }
 
         if($current === $new){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_ISNOTTHESAME]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la contraseña']);
             return;
         }
 
@@ -86,20 +85,20 @@ class User extends SessionController{
             $this->user->setPassword($new, true);
             
             if($this->user->update()){
-                $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEPASSWORD]);
+                $this->redirect('user', ['success' => Success::'Se actualizo la contraseña']);
             }else{
                 //error
-                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+                $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la contraseña']);
             }
         }else{
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la contraseña']);
             return;
         }
     }
 
     function updatePhoto(){
         if(!isset($_FILES['photo'])){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPHOTO]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la foto de perfil']);
             return;
         }
         $photo = $_FILES['photo'];
@@ -124,14 +123,14 @@ class User extends SessionController{
 
         if ($uploadOk == 0) {
             //echo "Sorry, your file was not uploaded.";
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPHOTO_FORMAT]);
+            $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la foto de perfil']);
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($photo["tmp_name"], $target_file)) {
                 $this->model->updatePhoto($hash, $this->user->getId());
-                $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEPHOTO]);
+                $this->redirect('user', ['success' => Success::'Se actualizo la foto de perfil con exito']);
             } else {
-                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPHOTO]);
+                $this->redirect('user', ['error' => Errors::'Error durante la actualizacion de la foto de perfil']);
             }
         }
         

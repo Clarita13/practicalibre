@@ -1,7 +1,7 @@
 <?php
     $categories = $this->d['categories'];
 ?>
-
+<!-- Plantilla para administracion de los productos y categorias-->
 <link rel="shortcut icon" href="https://claritaps.com/img/logo.ico">
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/expense.css">
 

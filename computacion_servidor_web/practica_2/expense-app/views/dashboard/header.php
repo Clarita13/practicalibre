@@ -1,3 +1,7 @@
+
+<!-- Plantilla de la pagina-->
+
+
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/default.css">
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/dashboard.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

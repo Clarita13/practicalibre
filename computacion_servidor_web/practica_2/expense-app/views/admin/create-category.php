@@ -1,4 +1,5 @@
 
+<!-- Plantilla de la pagina-->
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/expense.css">
 
 

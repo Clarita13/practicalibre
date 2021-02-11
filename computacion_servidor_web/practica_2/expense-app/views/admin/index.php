@@ -2,6 +2,7 @@
     $stats = $this->d['stats'];
 
 ?>
+<!-- Plantilla de la pagina-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

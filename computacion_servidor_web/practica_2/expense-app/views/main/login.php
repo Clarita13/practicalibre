@@ -1,3 +1,4 @@
+<!-- Plantilla para login-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

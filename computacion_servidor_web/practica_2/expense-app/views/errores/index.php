@@ -1,3 +1,5 @@
+<!-- Plantilla -->
+<!-- En caso de mostrar alguna pagina no encontrada por el control de sesion se muestra la siguiente plantilla-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

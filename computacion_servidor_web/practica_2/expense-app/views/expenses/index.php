@@ -4,7 +4,7 @@
     $dates = $this->d['dates'];
     $categories = $this->d['categories'];
 ?>
-
+<!-- Plantilla para administracion-->
 <link rel="stylesheet" href="<?php echo constant('URL') ?>public/css/history.css">
     <?php require_once 'views/dashboard/header.php'; ?>
 

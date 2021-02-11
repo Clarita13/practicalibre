@@ -6,6 +6,7 @@
     $categories             = $this->d['categories'];
 
 ?>
+<!-- Plantilla de la pagina-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">

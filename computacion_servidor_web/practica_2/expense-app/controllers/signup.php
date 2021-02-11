@@ -1,10 +1,7 @@
 
 <?php
-
-
-
 class Signup extends SessionController{
-
+/**Controlador para la creacion de un nuevo usuario desde el portal */
     function __construct(){
         parent::__construct();
     }
@@ -20,11 +17,9 @@ class Signup extends SessionController{
             $username = $this->getPost('username');
             $password = $this->getPost('password');
             
-            //validate data
             if($username == '' || empty($username) || $password == '' || empty($password)){
-                // error al validar datos
-                //$this->errorAtSignup('Campos vacios');
-                $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EMPTY]);
+                /* error al validar datos*/
+                $this->redirect('signup', ['error' => Errors::'Se encontraron multiples datos con el usuario a registrar']);
             }
 
             $user = new UserModel();
@@ -33,21 +28,16 @@ class Signup extends SessionController{
             $user->setRole("user");
             
             if($user->exists($username)){
-                //$this->errorAtSignup('Error al registrar el usuario. Elige un nombre de usuario diferente');
-                $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EXISTS]);
-                //return;
+                $this->redirect('signup', ['error' => Errors::'Se encontraron multiples datos con el usuario a registrar']);
+     
             }else if($user->save()){
-                //$this->view->render('login/index');
-                $this->redirect('', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
+                $this->redirect('', ['success' => Success::'Se agrego un usuario correctamente']);
             }else{
-                /* $this->errorAtSignup('Error al registrar el usuario. Inténtalo más tarde');
-                return; */
-                $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
+                $this->redirect('signup', ['error' => Errors::'Error al acceder']);
             }
         }else{
-            // error, cargar vista con errores
-            //$this->errorAtSignup('Ingresa nombre de usuario y password');
-            $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EXISTS]);
+            /*error, cargar vista con errores*/
+            $this->redirect('signup', ['error' => Errors::'Se encontraron multiples datos con el usuario a registrar']);
         }
     }
 }

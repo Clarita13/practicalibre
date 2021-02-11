@@ -112,7 +112,6 @@ class ExpensesModel extends Model implements IModel{
                 
                 array_push($items, $item);
             }
-            error_log("ExpensesModel::getByUserIdAndLimit(): count: " . count($items));
             return $items;
         }catch(PDOException $e){
             return false;
@@ -198,7 +197,6 @@ class ExpensesModel extends Model implements IModel{
      * Obtiene el total de amount de expenses basado en id de categoria
      */
     function getTotalByCategoryThisMonth($categoryid, $userid){
-        error_log("ExpensesModel::getTotalByCategoryThisMonth");
         try{
             $total = 0;
             $year = date('Y');
@@ -211,7 +209,6 @@ class ExpensesModel extends Model implements IModel{
             return $total;
 
         }catch(PDOException $e){
-            error_log("**ERROR: ExpensesModel::getTotalByCategoryThisMonth: error: " . $e);
             return NULL;
         }
     }

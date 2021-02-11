@@ -87,15 +87,12 @@ class CategoriesModel extends Model implements IModel{
             $query = $this->prepare('SELECT name FROM categories WHERE name = :name');
             $query->execute( ['name' => $name]);
             
-            if($query->rowCount() > 0){
-                error_log('CategoriesModel::exists() => true');
+            if($query->rowCount() > 0){/*Muestra los resultados obtenidos de la seleccion de las categorias de acuerdo al argumento solicitado*/
                 return true;
             }else{
-                error_log('CategoriesModel::exists() => false');
                 return false;
             }
         }catch(PDOException $e){
-            error_log($e);
             return false;
         }
     }

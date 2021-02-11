@@ -1,13 +1,13 @@
 <?php
-
+/*Controlador para el manejo de las sesiones en el sistema */
 class Admin extends SessionController{
-
 
     function __construct(){
         parent::__construct();
     }
 
     function render(){
+        /* Direccionamiento a la pagina inicial para el usuario */
         $stats = $this->getStatistics();
 
         $this->view->render('admin/index', [
@@ -16,11 +16,12 @@ class Admin extends SessionController{
     }
 
     function createCategory(){
+        /* Direccionamiento a la pagina de creacion de las categorias de productos */
         $this->view->render('admin/create-category');
     }
 
     function newCategory(){
-        error_log('Admin::newCategory()');
+       /* Al crear la categoria, se muestra una alerta solicitando los datos de nombre y color para el panel */
         if($this->existPOST(['name', 'color'])){
             $name = $this->getPost('name');
             $color = $this->getPost('color');
@@ -31,15 +32,15 @@ class Admin extends SessionController{
                 $categoriesModel->setName($name);
                 $categoriesModel->setColor($color);
                 $categoriesModel->save();
-                error_log('Admin::newCategory() => new category created');
-                $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_NEWCATEGORY]);
+                $this->redirect('admin', ['success' => Success::'Se agrego una nueva categoria']);
             }else{
-                $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWCATEGORY_EXISTS]);
+                $this->redirect('admin', ['error' => Errors::'Fallo en la administracion']);
             }
         }
     }
 
     private function getStatistics(){
+        /* Extraccion de datos en la BD */
         $res = [];
 
         $userModel = new UserModel();

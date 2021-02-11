@@ -20,11 +20,9 @@ class Controller{
     function existPOST($params){
         foreach ($params as $param) {
             if(!isset($_POST[$param])){
-                error_log("ExistPOST: No existe el parametro $param" );
                 return false;
             }
         }
-        error_log( "ExistPOST: Existen parámetros" );
         return true;
     }
 /**Controlador para los metodos GET de la ejecucion de los metodos hacia la BD */
